@@ -1,6 +1,10 @@
 <div>
-	<a href="/TodoApp">Logout</a>
-        <table ng-if="todos.length>0">
+		<div>
+			<span">LoggedIn: <strong>{{user.userId}}</strong></span></td>
+			<span style="padding-left:38%">Role: <strong>{{user.role.role}}</strong></span></td>
+			<span style="padding-left:30%"><a href="/TodoApp">Logout</a></span>
+		</div>
+        <table ng-if="todos.length>0" class="table table-bordered">
             <tr>
                 <th><a href="" ng-click="orderByField='serial'; reverseSort = !reverseSort">#<span ng-hide=reverseSort>^</span></a></th>              
                 <th><a href="" ng-click="orderByField='text'; reverseSort = !reverseSort">Todo<span ng-hide=reverseSort>^</span></a></th>
