@@ -1,0 +1,15 @@
+<form>
+  <div class="form-group">
+    <label for="userId">UserId</label>
+    <input type="input" class="form-control" id="userId" ng-model="userId"
+				ng-change="checkLoginBttn()" placeholder="Enter userId" autofocus="autofocus">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password</label>
+    <input type="password" class="form-control" id="pwd" ng-model="pwd"
+				ng-change="checkLoginBttn()" placeholder="Enter password">
+	<label class="err">{{errorMsg}}</label>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="login()" ng-disabled="loginDisabled">Submit</button>
+
+</form>

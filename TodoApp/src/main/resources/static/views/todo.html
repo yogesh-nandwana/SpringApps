@@ -1,0 +1,31 @@
+<div>
+	<a href="/TodoApp">Logout</a>
+        <table ng-if="todos.length>0">
+            <tr>
+                <th><a href="" ng-click="orderByField='serial'; reverseSort = !reverseSort">#<span ng-hide=reverseSort>^</span></a></th>              
+                <th><a href="" ng-click="orderByField='text'; reverseSort = !reverseSort">Todo<span ng-hide=reverseSort>^</span></a></th>
+                <th><a href="" ng-click="orderByField='isCompleted'; reverseSort = !reverseSort">Status<span ng-hide=reverseSort>^</span></a></th>                
+                <th>-</th>
+                <th><a href="" ng-click="orderByField='cDate'; reverseSort = !reverseSort">Completion date<span ng-hide=reverseSort>^</span></a></th>                
+            </tr>
+            <tr ng-repeat="todo in todos |orderBy:orderByField:reverseSort">
+                <td>{{todo.srNo}}</td>
+                <td>
+                    <span ng-if="todo.completed=='Y'"><strike>{{todo.text}}</strike></span>
+                    <span ng-if="todo.completed=='N'">{{todo.text}}</span>                
+                </td>                
+                <td><input type="checkbox" ng-checked="todo.completed=='Y'" ng-disabled="(todo.completed=='Y' || user.role.isUpdateAllowed=='N')" ng-click="updateStatus(todo)" />{{todo.completed=='Y'?"Completed":"Pending"}}</td>
+                <td><input type="button" ng-disabled="(todo.completed=='Y' ||  user.role.isDeleteAllowed=='N')" value="X" / ng-click="delete(todo)"></td>
+                <td><label>{{todo.cDate | date: 'medium'}}</label></td>
+            </tr>
+        </table>
+        <!--<ul ng-repeat="todo in todos">
+                <li>{{todo.serial}}) {{todo.text}}</li>
+            </ul>-->
+        <br>
+        <div ng-show="user.role.isCreateAllowed=='Y'">
+        	<input type="text" ng-model="todoText" placeholder="Enter new todo!" ng-change="enableAddButton()">
+        	<input type="button" value="+" ng-disabled="disabled" ng-click="add()" />
+        	<label class="err">{{errorMsg}}</label>
+        </div>	
+</div>

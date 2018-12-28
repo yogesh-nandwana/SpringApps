@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todo App</title>
+<link rel="stylesheet" href="../css/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/app/style.css" />
+
+<script src="../js/lib/angular.min.js"></script>
+<script src="../js/lib/angular-route.min.js"></script>
+<script src="../js/app/app.js"></script>
+<script src="../js/app/services/loginService.js"></script>
+<script src="../js/app/services/todoService.js"></script>
+<script src="../js/app/controllers/loginController.js"></script>
+<script src="../js/app/controllers/todoController.js"></script>
+</head>
+
+<body ng-app="todoApp"
+	ng-init="loginDisabled=true;userIdErrMsg='Please enter userId!';pwdErrMsg='Please enter password!';disabled=true;errorMSg=null;">
+	<div class="container">
+		<h1>Todo App demo</h1>
+		<ng-view></ng-view>
+	</div>
+	
+</body>
+</html>
