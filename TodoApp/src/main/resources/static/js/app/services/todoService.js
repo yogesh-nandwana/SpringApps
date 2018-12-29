@@ -55,7 +55,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.isTodoExists = function(todoTextToCheckExistanceFor){
 		var deferred = $q.defer();
-		return $http.get('/todo/'+todoTextToCheckExistanceFor)
+		return $http.get(`/todo/${todoTextToCheckExistanceFor}`) //using backtick ES6 here
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.data);
@@ -105,7 +105,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.deleteTodo = function(todo){
 		var deferred = $q.defer();
-		return $http.delete('/todo/'+todo.srNo)
+		return $http.delete(`/todo/${todo.srNo}`) //using backtick ES6 here
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.status);
