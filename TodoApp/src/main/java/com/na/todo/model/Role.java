@@ -8,27 +8,29 @@ import javax.persistence.Id;
 public class Role {
 
 	@Id
-	private Integer id;
+	private int id;
 
 	@Column(name="ROLE_NAME",unique=true)
 	private String role;
 
 	@Column(name="IS_CREATE_ALLOWED",nullable=false)
-	private Character isCreateAllowed;
+	private char isCreateAllowed;
 	
 	@Column(name="IS_UPDATE_ALLOWED",nullable=false)
-	private Character isUpdateAllowed;
+	private char isUpdateAllowed;
 
 	@Column(name="IS_DELETE_ALLOWED",nullable=false)
-	private Character isDeleteAllowed;
+	private char isDeleteAllowed;
 
-	public Role() {}
+	protected Role() {
+		//Not to be used directly
+	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -40,11 +42,11 @@ public class Role {
 		this.role = role;
 	}
 
-	public Character getIsCreateAllowed() {
+	public char getIsCreateAllowed() {
 		return isCreateAllowed;
 	}
 
-	public void setIsCreateAllowed(Character isCreateAllowed) {
+	public void setIsCreateAllowed(char isCreateAllowed) {
 		this.isCreateAllowed = isCreateAllowed;
 	}
 
@@ -52,7 +54,7 @@ public class Role {
 		return isDeleteAllowed;
 	}
 
-	public void setIsDeleteAllowed(Character isDeleteAllowed) {
+	public void setIsDeleteAllowed(char isDeleteAllowed) {
 		this.isDeleteAllowed = isDeleteAllowed;
 	}
 	
@@ -61,7 +63,7 @@ public class Role {
 		return isUpdateAllowed;
 	}
 
-	public void setIsUpdateAllowed(Character isUpdateAllowed) {
+	public void setIsUpdateAllowed(char isUpdateAllowed) {
 		this.isUpdateAllowed = isUpdateAllowed;
 	}
 

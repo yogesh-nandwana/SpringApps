@@ -37,12 +37,12 @@ public class TodoRepositoryTest {
 		Assertions.assertThat(found.getSrNo()).isEqualTo(1);
 	}
 
-	@Test
+	/*@Test
 	public void testFindByUserId() {
 		List<Todo> todos = todoRepositroy.findByUserId(1);
 		Assertions.assertThat(todos).isNotNull();
 		Assertions.assertThat(todos.size()).isEqualTo(3);
-	}
+	}*/
 
 	@Test
 	public void testFindMaxSrNo() {

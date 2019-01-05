@@ -15,4 +15,5 @@ public interface TodoRepository extends JpaRepository<Todo, Integer> {
 	
 	@Query("select max(srNo) from Todo")
 	Integer findMaxSrNo();
+	//List<Todo> findByUserId(int userId);
 }

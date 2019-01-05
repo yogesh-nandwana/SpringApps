@@ -11,25 +11,25 @@ import javax.persistence.OneToOne;
 public class User {
 	
 	@Id
-	private Integer id;
+	private int id;
 	
 	@Column(name="USER_ID",unique=true)
 	private String userId;
 	
-	private String password;
+	private char[] password;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ROLE_ID")
 	private Role role;
 	
-	public User() {
+	protected User() {//Not to be used directly
 		// //needed to fix Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document
 	}
 	
 	
 	public User(String userId,String password) {
 		this.userId = userId;
-		this.password = password;
+		this.password = password.toCharArray();
 	}
 
 	public Integer getId() {
@@ -48,11 +48,11 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getPassword() {
+	public char[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(char[] password) {
 		this.password = password;
 	}
 

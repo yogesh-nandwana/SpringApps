@@ -1,5 +1,6 @@
 package com.na.todo.service;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,18 @@ import com.na.todo.repository.UserRepository;
 @Service
 public class LoginService implements ILoginService {
 	private static final Logger logger = Logger.getLogger("LoginService"); 
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
 	@Override
 	public User authenticate(User user) {
 		User foundUser = userRepo.findByUserId(user.getUserId());
-		if(foundUser!=null && foundUser.getPassword().equals(user.getPassword())){
-			logger.info("userId:"+user.getUserId() +" matched in database.");
+		if(foundUser!=null && Arrays.equals(foundUser.getPassword(),user.getPassword())){
+			logger.info(String.format("userId:%s matched in database.",user.getUserId()));
 			return foundUser;
 		}
-		logger.info("userId:"+user.getUserId() +" could not be matched in database.");
+		logger.info(String.format("userId:%s could not be matched in database.",user.getUserId()));
 		return null;
 	}
 }

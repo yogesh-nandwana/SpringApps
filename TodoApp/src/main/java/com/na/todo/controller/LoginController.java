@@ -20,7 +20,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public User login(@RequestBody User userLoginInfo){
-		logger.info("Request:/login for userId:"+userLoginInfo.getUserId());
+		logger.info(String.format("Request:/login for userId:%s",userLoginInfo.getUserId()));
 		return loginService.authenticate(userLoginInfo);
 	}
 }

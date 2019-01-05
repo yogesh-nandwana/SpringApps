@@ -11,19 +11,21 @@ public class Todo implements Comparable<Todo>{
 
 	@Id
 	@Column(name = "SRNO")
-	private Integer srNo;
+	private int srNo;
 
 	@Column(name = "TEXT",unique=true)
 	private String text;
 
 	@Column(name="IS_COMPLETED")
-	private Character completed;
+	private char completed;
 
 	@Column(name= "COMPLETION_DATE")
 	private Date cDate;
 
 
-	public Todo(){} //needed to fix Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document
+	protected Todo(){
+		//Not to be used directly
+	} //needed to fix Failed to read HTTP message: org.springframework.http.converter.HttpMessageNotReadableException: Could not read document
 
 	public Todo(int srNo,String text) {
 		this.srNo = srNo;
@@ -33,10 +35,6 @@ public class Todo implements Comparable<Todo>{
 
 	public int getSrNo() {
 		return srNo;
-	}
-
-	public void setSrNo(int srNo) {
-		this.srNo = srNo;
 	}
 
 	public String getText() {
@@ -55,15 +53,15 @@ public class Todo implements Comparable<Todo>{
 		this.cDate = cDate;
 	}
 
-	public Character getCompleted() {
+	public char getCompleted() {
 		return completed;
 	}
 
-	public void setCompleted(Character completed) {
+	public void setCompleted(char completed) {
 		this.completed = completed;
 	}
 
-	public void setSrNo(Integer srNo) {
+	public void setSrNo(int srNo) {
 		this.srNo = srNo;
 	}
 	
@@ -78,9 +76,8 @@ public class Todo implements Comparable<Todo>{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cDate == null) ? 0 : cDate.hashCode());
-		result = prime * result
-				+ ((completed == null) ? 0 : completed.hashCode());
-		result = prime * result + ((srNo == null) ? 0 : srNo.hashCode());
+		result = prime * result + completed;
+		result = prime * result + srNo;
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -99,15 +96,9 @@ public class Todo implements Comparable<Todo>{
 				return false;
 		} else if (!cDate.equals(other.cDate))
 			return false;
-		if (completed == null) {
-			if (other.completed != null)
-				return false;
-		} else if (!completed.equals(other.completed))
+		if (completed != other.completed)
 			return false;
-		if (srNo == null) {
-			if (other.srNo != null)
-				return false;
-		} else if (!srNo.equals(other.srNo))
+		if (srNo != other.srNo)
 			return false;
 		if (text == null) {
 			if (other.text != null)
