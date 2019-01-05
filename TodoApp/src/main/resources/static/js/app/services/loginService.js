@@ -5,7 +5,7 @@ factory('loginService', function($http,$q) {
 
 	loginService.login = function (user){
 		var deferred = $q.defer();
-		return $http.post('/login',JSON.stringify(user))
+		return $http.post('/login',user)
 		.then(function(response) {
 			// promise is fulfilled
 			//$log.debug(JSON.stringify(response.data));

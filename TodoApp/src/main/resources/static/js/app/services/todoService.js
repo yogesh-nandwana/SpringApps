@@ -2,24 +2,6 @@ angular.module('todoApp').
 factory('todoService', function($http,$q) {
 
 	var todoService = {};
-	
-	todoService.login = function (user){
-		var deferred = $q.defer();
-		return $http.post('/login',JSON.stringify(user))
-		.then(function(response) {
-			// promise is fulfilled
-			//$log.debug(JSON.stringify(response.data));
-			deferred.resolve(response.data);
-			// promise is returned
-			return deferred.promise;
-		}, function(response) {
-			// the following line rejects the promise 
-			deferred.reject(response);
-			//$log.error('response status: '+response.status);
-			// promise is returned
-			return deferred.promise;
-		});
-	};
 
 	todoService.getTodos = function() {
 		var deferred = $q.defer();
@@ -39,7 +21,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.updateTodo = function(changedTodo){
 		var deferred = $q.defer();
-		return $http.put('/todo',JSON.stringify(changedTodo))
+		return $http.put('/todo',changedTodo)
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.status);
@@ -87,7 +69,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.addTodo = function(todoToAdd){
 		var deferred = $q.defer();
-		return $http.post('/todo',JSON.stringify(todoToAdd))
+		return $http.post('/todo',todoToAdd)
 		.then(function(response) {
 			// promise is fulfilled
 			//$log.debug(JSON.stringify(response.data));
