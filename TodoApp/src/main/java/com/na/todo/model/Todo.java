@@ -13,10 +13,9 @@ public class Todo implements Comparable<Todo>{
 	@Column(name = "SRNO")
 	private int srNo;
 
-	@Column(name = "TEXT",unique=true)
+	@Column(unique=true)
 	private String text;
 
-	@Column(name="IS_COMPLETED")
 	private char completed;
 
 	@Column(name= "COMPLETION_DATE")

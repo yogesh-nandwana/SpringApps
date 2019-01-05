@@ -1,7 +1,5 @@
 package com.na.todo.test;
 
-import java.util.List;
-
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

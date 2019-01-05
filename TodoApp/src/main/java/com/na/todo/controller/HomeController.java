@@ -10,7 +10,7 @@ public class HomeController {
 	private static final Logger logger = Logger.getLogger("HomeController");
 	
 	@RequestMapping("/TodoApp")
-	public String home() {
+	private String home() {
 		logger.fine("Request to /TodoApp arrived. Redirecting to index page");
 		return "index";
 	}

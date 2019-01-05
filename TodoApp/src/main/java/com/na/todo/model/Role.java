@@ -10,7 +10,7 @@ public class Role {
 	@Id
 	private int id;
 
-	@Column(name="ROLE_NAME",unique=true)
+	@Column(unique=true)
 	private String role;
 
 	@Column(name="IS_CREATE_ALLOWED",nullable=false)
