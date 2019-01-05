@@ -77,9 +77,9 @@ angular.module('todoApp').controller("todoController", function ($scope,$log,tod
 			if(status==200){
 				var index = $scope.todos.indexOf(todo);
 				$scope.todos.splice(index, 1);
-				$log.info("Todo with srNo "+todo.srNo + " deleted.");
+				$log.info(`Todo having srNo ${todo.srNo} deleted.`);
 			}else{
-				$log.error("Todo with srNo "+todo.srNo + " could not be deleted.");
+				$log.error(`Todo having srNo ${todo.srNo} could not be deleted.`);
 				$scope.errorMsg ="Todo deletion failed!"; 
 			}
 		});
