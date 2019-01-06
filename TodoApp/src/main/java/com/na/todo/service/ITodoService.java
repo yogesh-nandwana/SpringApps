@@ -18,7 +18,7 @@ public interface ITodoService {
 	
 	public void deleteTodo(int srNo) throws NoSuchTodoException;
 
-	public int getLatestSrNo();
+	public int getMaxSrNo();
 
 	public boolean isTodoExists(String text);
 }

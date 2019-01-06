@@ -36,7 +36,7 @@ public class TodoControllerTest {
 	public void fetchDefaultTodos() throws Exception {
 		Mockito.when(todoService.getAllTodos()).thenReturn(new ArrayList<>(Arrays.asList(new Todo(1,"todo1"),new Todo(2,"todo2"),new Todo(3,"Todo3"))));
 
-		mockMvc.perform(MockMvcRequestBuilders.get("/todo"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/todos"))
 			   .andDo(MockMvcResultHandlers.print())
 		       .andDo(MockMvcResultHandlers.log())
 		       .andExpect(MockMvcResultMatchers.status().isOk())
@@ -47,7 +47,7 @@ public class TodoControllerTest {
 	public void fetchTodo_forSpecificTodoText() throws Exception {
 		Mockito.when(todoService.getTodo("todo1")).thenReturn(new Todo(1,"todo1"));
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/todo/todo1"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/todos/todo1"))
 			   .andDo(MockMvcResultHandlers.print())
 		       .andExpect(MockMvcResultMatchers.status().isOk())
 		       .andReturn().equals("true");
@@ -55,9 +55,9 @@ public class TodoControllerTest {
 
 	@Test
 	public void fetchLatestSrNo() throws Exception {
-		Mockito.when(todoService.getLatestSrNo()).thenReturn(3);
+		Mockito.when(todoService.getMaxSrNo()).thenReturn(3);
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/todo/srNo"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/todos/srno/max"))
 			   .andDo(MockMvcResultHandlers.print())
 		       .andExpect(MockMvcResultMatchers.status().isOk())
 		       .andReturn().equals(3);
@@ -68,7 +68,7 @@ public class TodoControllerTest {
 		Todo todo = new Todo(4,"todo4");
 		String json = new ObjectMapper().writeValueAsString(todo);
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/todo",todo)
+		mockMvc.perform(MockMvcRequestBuilders.post("/todos",todo)
 				.contentType(MediaType.APPLICATION_JSON_UTF8).content(json))
 				.andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().isOk());
@@ -78,7 +78,7 @@ public class TodoControllerTest {
 	public void updateTodo() throws Exception {
 		Todo todo = new Todo(1,"todo1");
 		String json = new ObjectMapper().writeValueAsString(todo);
-		mockMvc.perform(MockMvcRequestBuilders.put("/todo",todo)
+		mockMvc.perform(MockMvcRequestBuilders.put("/todos",todo)
 				.contentType(MediaType.APPLICATION_JSON_UTF8).content(json))
 				.andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().is(200));
@@ -87,7 +87,7 @@ public class TodoControllerTest {
 
 	@Test
 	public void deleteSpecificTodo() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.delete("/todo/4"))
+		mockMvc.perform(MockMvcRequestBuilders.delete("/todos/4"))
 		.andDo(MockMvcResultHandlers.print())
 		.andExpect(MockMvcResultMatchers.status().is(200));
 	}

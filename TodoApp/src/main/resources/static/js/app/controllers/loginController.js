@@ -8,7 +8,7 @@ angular.module('todoApp').controller("loginController", function ($scope,$rootSc
 			if(data!="" && $scope.userId===data.userId){
 				$rootScope.user = data;
 				$log.info(`Login successful for userId:${data.userId} having role details:isCreateAllowed:${data.role.isCreateAllowed},isDeleteAllowed:${data.role.isDeleteAllowed},isUpdateAllowed:${data.role.isUpdateAllowed}`);
-				$location.path("/todo");
+				$location.path("/todos");
 			}else{
 			$log.error(`Login failed for userId:${$scope.userId},password:${$scope.pwd}`);
 			$scope.errorMsg ="Invalid credentials!";

@@ -26,7 +26,7 @@ public class TodoAppIntegrationTest {
 	
 	@Test
 	public void getAllTodos_shouldReturn_3todos() {
-		ResponseEntity<List<Todo>> responseEntity = testRestTemplate.exchange("/todo", HttpMethod.GET, null,new ParameterizedTypeReference<List<Todo>>() {});
+		ResponseEntity<List<Todo>> responseEntity = testRestTemplate.exchange("/todos", HttpMethod.GET, null,new ParameterizedTypeReference<List<Todo>>() {});
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
 		assertThat(responseEntity.getBody()).isNotEmpty();

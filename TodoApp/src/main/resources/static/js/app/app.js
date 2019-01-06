@@ -2,10 +2,10 @@ angular.module('todoApp', ['ngRoute'])
 .config(function($routeProvider){
 	$routeProvider.
 	when('/home', {
-		templateUrl: '/views/login1.html',
+		templateUrl: '/views/loginWithBootstrap.html',
 		controller: 'loginController'
 	}).
-	when('/todo', {
+	when('/todos', {
 		templateUrl: '/views/todo.html',
 		controller: 'todoController'
 	}).

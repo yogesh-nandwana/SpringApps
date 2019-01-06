@@ -58,7 +58,7 @@ public class TodoService implements ITodoService {
 	}
 
 	@Override
-	public int getLatestSrNo() {
+	public int getMaxSrNo() {
 		Integer maxSrNo = todoRepo.findMaxSrNo();
 		if(maxSrNo!=null){
 			return maxSrNo.intValue();

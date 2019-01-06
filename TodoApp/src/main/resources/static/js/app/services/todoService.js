@@ -5,7 +5,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.getTodos = function() {
 		var deferred = $q.defer();
-		return $http.get('/todo')
+		return $http.get('/todos')
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.data);
@@ -21,7 +21,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.updateTodo = function(changedTodo){
 		var deferred = $q.defer();
-		return $http.put('/todo',changedTodo)
+		return $http.put('/todos',changedTodo)
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.status);
@@ -37,7 +37,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.isTodoExists = function(todoTextToCheckExistanceFor){
 		var deferred = $q.defer();
-		return $http.get(`/todo/${todoTextToCheckExistanceFor}`) //using backtick ES6 here
+		return $http.get(`/todos/${todoTextToCheckExistanceFor}`) //using backtick ES6 here
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.data);
@@ -53,7 +53,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.getLatestSrNo = function(){
 		var deferred = $q.defer();
-		return $http.get('/todo/srNo')
+		return $http.get('/todos/srno/max')
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.data);
@@ -69,7 +69,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.addTodo = function(todoToAdd){
 		var deferred = $q.defer();
-		return $http.post('/todo',todoToAdd)
+		return $http.post('/todos',todoToAdd)
 		.then(function(response) {
 			// promise is fulfilled
 			//$log.debug(JSON.stringify(response.data));
@@ -87,7 +87,7 @@ factory('todoService', function($http,$q) {
 
 	todoService.deleteTodo = function(todo){
 		var deferred = $q.defer();
-		return $http.delete(`/todo/${todo.srNo}`) //using backtick ES6 here
+		return $http.delete(`/todos/${todo.srNo}`) //using backtick ES6 here
 		.then(function(response) {
 			// promise is fulfilled
 			deferred.resolve(response.status);

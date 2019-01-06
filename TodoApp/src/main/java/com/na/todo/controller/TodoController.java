@@ -25,32 +25,33 @@ public class TodoController {
 	private ITodoService todoService;
 	
 	
-	@PostMapping("/todo")
+	@PostMapping("/todos")
 	private void createTodo(@RequestBody Todo todo) throws TodoAlredyExistsException {
 		todoService.createTodo(todo);
 	}
 
-	@PutMapping("/todo")
+	@PutMapping("/todos")
 	private void updateTodo(@RequestBody Todo todo) {
 		todoService.updateTodo(todo);
 	}
 
-	@GetMapping("/todo")
+	@GetMapping("/todos")
 	private List<Todo> getTodos(){
 		return todoService.getAllTodos();
+		
 	}
 
-	@GetMapping("/todo/srNo")
-	private int getLatestSrNo(){
-		return todoService.getLatestSrNo();
+	@GetMapping("/todos/srno/max")
+	private int getMaxSrNo(){
+		return todoService.getMaxSrNo();
 	}
 
-	@GetMapping("/todo/{text}")
+	@GetMapping("/todos/{text}")
 	private boolean isTodoExists(@PathVariable String text){
 		return todoService.getTodo(text)==null?false:true;
 	}
 
-	@DeleteMapping("/todo/{srNo}")// not sure why its not complaining for uncaught checked exception
+	@DeleteMapping("/todos/{srNo}")// not sure why its not complaining for uncaught checked exception
 	private void deleteTodo(@PathVariable int srNo){
 		todoService.deleteTodo(srNo);
 	}
