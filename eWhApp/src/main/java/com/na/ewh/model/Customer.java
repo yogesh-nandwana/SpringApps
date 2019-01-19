@@ -9,86 +9,48 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
-  
+
   @Id
   @GeneratedValue
   private int id;
-  
-  @Column(name="FIRST_NAME")
+
+  @Column(name = "FIRST_NAME")
   private String firstName;
-  
-  @Column(name="MIDDLE_NAME")
+
+  @Column(name = "MIDDLE_NAME")
   private String middleName;
-  
-  @Column(name="LAST_NAME")
+
+  @Column(name = "LAST_NAME")
   private String lastName;
-  
-  @Column(name="BIRTH_DATE")
+
+  @Column(name = "BIRTH_DATE")
   private Date dob;
-  
-  @Column(name="PARENT_NAME")
+
+  @Column(name = "PARENT_NAME")
   private String parentName;
-  
+
+  @OneToOne
+  private ContactInfo contactInfo;
+
   @OneToOne
   private Address address;
-  
-  protected Customer(){
-    //Not exposed for direct use
+
+  protected Customer() {
+    // Not exposed for direct use
   }
 
-  public int getId() {
-    return id;
-  }
+  public static enum CUSTOMER_TYPE {
+    F("F"), T("T");
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    private String customerType;
 
-  public String getFirstName() {
-    return firstName;
-  }
+    private CUSTOMER_TYPE(String customerType) {
+      this.customerType = customerType;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getMiddleName() {
-    return middleName;
-  }
-
-  public void setMiddleName(String middleName) {
-    this.middleName = middleName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public Date getDob() {
-    return dob;
-  }
-
-  public void setDob(Date dob) {
-    this.dob = dob;
-  }
-
-  public String getParentName() {
-    return parentName;
-  }
-
-  public void setParentName(String parentName) {
-    this.parentName = parentName;
-  }
-
-  public Address getAddress() {
-    return address;
-  }
-
-  public void setAddress(Address address) {
-    this.address = address;
+    @Override
+    public String toString() {
+      return customerType.equals("F") ? "Farmer" : "Trader";
+    }
   }
 }

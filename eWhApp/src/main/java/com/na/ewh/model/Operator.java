@@ -2,8 +2,11 @@ package com.na.ewh.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import com.na.ewh.util.EwhConstants.GENDER;
 
 @Entity
 public class Operator {
@@ -17,6 +20,12 @@ public class Operator {
   
   @Column(name="PWD",nullable=false)
   private char[] password;
+  
+  @OneToOne
+  private ContactInfo contactInfo;
+  
+  @Enumerated
+  private GENDER gender;
   
   protected Operator() {
     //Not exposed for use
